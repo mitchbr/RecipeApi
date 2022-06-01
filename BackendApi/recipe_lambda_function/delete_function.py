@@ -1,10 +1,14 @@
 import json
 
+from recipe_lambda_function.lambda_function import db_connect
+
 """
     DELETE endpoint
     Remove a recipe
 """
-def delRecipe(connection, event):
+def lambda_handler(event, context):
+    connection = db_connect()
+    cursor = connection.cursor()
     recipe = json.loads(event["body"])
     if "recipeId" not in recipe:
         return {

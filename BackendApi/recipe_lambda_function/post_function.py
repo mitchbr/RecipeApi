@@ -1,10 +1,14 @@
 import json
 
+from recipe_lambda_function.lambda_function import db_connect
+
 """
     POST endpoint
     Add a new recipe
 """
-def postRecipe(connection, event):
+def lambda_handler(event, context):
+    connection = db_connect()
+    cursor = connection.cursor()
     newRecipe = json.loads(event["body"])
 
     # Check if any keys are missing

@@ -1,10 +1,13 @@
 import json
 
+from recipe_lambda_function.lambda_function import db_connect
+
 """
     GET endpoint
     Return all data for all recipes
 """
-def getRecipes(connection):
+def lambda_handler(event, context):
+    connection = db_connect()
     cursor = connection.cursor()
 
     # Retrieve and organize the ingredients
