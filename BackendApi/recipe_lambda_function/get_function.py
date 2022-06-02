@@ -1,6 +1,6 @@
 import json
 
-from recipe_lambda_function.lambda_function import db_connect
+from shared_resources import db_connect
 
 """
     GET endpoint
