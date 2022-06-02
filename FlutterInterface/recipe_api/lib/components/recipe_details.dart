@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
-import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe_metadata.dart';
+import 'package:flutter/services.dart';
 
 import 'recipe.dart';
+import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe_metadata.dart';
 
 class RecipeDetails extends StatefulWidget {
   final Recipe recipeEntry;
@@ -155,12 +156,13 @@ class _RecipeDetailsState extends State<RecipeDetails> {
 
   void deleteRecipe(id) async {
     // TODO: Verify response code
-    final http.Response response =
-        await http.delete(Uri.parse('https://i4yiwtjkg7.execute-api.us-east-2.amazonaws.com/deleteRecipe'),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode({'recipeId': id}));
+    final String jsonData = await rootBundle.loadString('assets/api_url.json');
+    final apiUrl = await json.decode(jsonData);
+    final http.Response response = await http.delete(Uri.parse('${apiUrl['url']}/recipes'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({'recipeId': id}));
 
     setState(() {
       Navigator.of(context).pop();

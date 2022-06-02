@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter/services.dart';
 
 import 'recipe.dart';
 import 'recipe_details.dart';
@@ -26,12 +27,14 @@ class _RecipesViewState extends State<RecipesView> {
   }
 
   void fetchRecipes() async {
+    final String jsonData = await rootBundle.loadString('assets/api_url.json');
+    final apiUrl = await json.decode(jsonData);
     final res = await http.get(
-      Uri.parse('https://i4yiwtjkg7.execute-api.us-east-2.amazonaws.com/getRecipes'),
+      Uri.parse('${apiUrl['url']}/recipes'),
     );
 
     if (res.statusCode == 200) {
-      final entriesJson = jsonDecode(res.body)["recipes"];
+      final entriesJson = jsonDecode(jsonDecode(res.body)["body"])["recipes"];
       final entriesList = entriesJson.map((recipe) => Recipe.fromJson(recipe)).toList();
 
       setState(() {

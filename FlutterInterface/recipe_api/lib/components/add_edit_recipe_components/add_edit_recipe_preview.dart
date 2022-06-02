@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import 'package:flutter/services.dart';
 
 import '../recipe.dart';
 
@@ -126,14 +127,16 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
         ),
         onPressed: () async {
           final httpBody = entryData.toJson();
+          final String jsonData = await rootBundle.loadString('assets/api_url.json');
+          final apiUrl = await json.decode(jsonData);
           if (tag == 'Add') {
-            await http.post(Uri.parse('https://i4yiwtjkg7.execute-api.us-east-2.amazonaws.com/createRecipe'),
+            await http.post(Uri.parse('${apiUrl['url']}/recipes'),
                 headers: <String, String>{
                   'Content-Type': 'application/json; charset=UTF-8',
                 },
                 body: jsonEncode(httpBody));
           } else {
-            http.put(Uri.parse('https://i4yiwtjkg7.execute-api.us-east-2.amazonaws.com/updateRecipe'),
+            http.put(Uri.parse('${apiUrl['url']}/recipes'),
                 headers: <String, String>{
                   'Content-Type': 'application/json; charset=UTF-8',
                 },
