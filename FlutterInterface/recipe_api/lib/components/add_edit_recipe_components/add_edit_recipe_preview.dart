@@ -135,6 +135,8 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
                   'Content-Type': 'application/json; charset=UTF-8',
                 },
                 body: jsonEncode(httpBody));
+
+            uploadImage(apiUrl);
           } else {
             http.put(Uri.parse('${apiUrl['url']}/recipes'),
                 headers: <String, String>{
@@ -150,5 +152,20 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
           // TODO: Navigate back to recipe, stop popping 4 times
         },
         child: const Text('Publish'));
+  }
+
+  void uploadImage(apiUrl) async {
+    final imageName = "${entryData.recipeName}_${entryData.author}.jpeg";
+    var client = http.Client();
+    var request = http.Request('PUT',
+        Uri.parse('https://g9bijzgqga.execute-api.us-east-2.amazonaws.com/dev/mitchell-recipe-images/$imageName'));
+    request.headers.addAll({'Content-Type': 'image/jpeg'});
+    request.bodyBytes = await File(entryData.images[0]).readAsBytes();
+    var streamedResponse = await client.send(request).then((res) {
+      print(res.statusCode);
+    }).catchError((err) {
+      print(err);
+    });
+    client.close();
   }
 }
