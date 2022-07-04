@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -16,17 +19,24 @@ class RecipesView extends StatefulWidget {
 
 class _RecipesViewState extends State<RecipesView> {
   List recipeEntries = [];
+  List<Uint8List> images = [];
   bool loadedSql = false;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchRecipes();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: bodyBuilder(context),
+        body: RefreshIndicator(onRefresh: () => fetchRecipes(), child: bodyBuilder(context)),
         floatingActionButton:
             FloatingActionButton(onPressed: () => pushNewEntry(context), child: const Icon(Icons.add)));
   }
 
-  void fetchRecipes() async {
+  Future<void> fetchRecipes() async {
     final String jsonData = await rootBundle.loadString('assets/api_url.json');
     final apiUrl = await json.decode(jsonData);
     final res = await http.get(
@@ -36,6 +46,9 @@ class _RecipesViewState extends State<RecipesView> {
     if (res.statusCode == 200) {
       final entriesJson = jsonDecode(jsonDecode(res.body)["body"])["recipes"];
       final entriesList = entriesJson.map((recipe) => Recipe.fromJson(recipe)).toList();
+      for (var i = 0; i < entriesList.length; i++) {
+        images.add(await fetchRecipeImage(entriesList[i]));
+      }
 
       setState(() {
         loadedSql = true;
@@ -46,13 +59,21 @@ class _RecipesViewState extends State<RecipesView> {
     }
   }
 
+  Future<Uint8List> fetchRecipeImage(recipe) async {
+    final String jsonData = await rootBundle.loadString('assets/api_url.json');
+    final apiUrl = await json.decode(jsonData);
+    final imageName = "${recipe.recipeName}_${recipe.author}.jpeg";
+    var url = Uri.parse('${apiUrl['url']}/images/mitchell-recipe-images/$imageName');
+    var res = await http.get(url);
+    return res.bodyBytes;
+  }
+
   /*
    *
    * Page Views
    * 
    */
   Widget bodyBuilder(BuildContext context) {
-    fetchRecipes();
     if (recipeEntries.isEmpty && !loadedSql) {
       return circularIndicator(context);
     } else if (recipeEntries.isEmpty) {
@@ -63,18 +84,14 @@ class _RecipesViewState extends State<RecipesView> {
   }
 
   Widget emptyWidget(BuildContext context) {
-    return const Center(
-        child: Icon(
-      Icons.book,
-      size: 100,
-    ));
+    return Center(child: IconButton(onPressed: () => fetchRecipes(), icon: Icon(Icons.refresh)));
   }
 
   Widget circularIndicator(BuildContext context) {
     return const Center(child: CircularProgressIndicator());
   }
 
-/*
+  /*
    *
    * Recipes ListView
    * 
@@ -90,7 +107,8 @@ class _RecipesViewState extends State<RecipesView> {
   Widget groceryTile(int index) {
     return ListTile(
       title: Text('${recipeEntries[index].recipeName}'),
-      onTap: () => pushRecipeDetails(context, recipeEntries[index]),
+      leading: Image.memory(images[index]),
+      onTap: () => pushRecipeDetails(context, recipeEntries[index], images[index]),
     );
   }
 
@@ -100,15 +118,13 @@ class _RecipesViewState extends State<RecipesView> {
    * 
    */
   void pushNewEntry(BuildContext context) {
-    Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const AddEditRecipeMetadata())) // TODO: CHange back to: AddEditRecipeMetadata
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AddEditRecipeMetadata()))
         .then((data) => setState(() => {}));
   }
 
-  void pushRecipeDetails(BuildContext context, recipeEntry) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeDetails(recipeEntry: recipeEntry)))
+  void pushRecipeDetails(BuildContext context, recipeEntry, image) {
+    Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RecipeDetails(recipeEntry: recipeEntry, image: image)))
         .then((data) => setState(() => {}));
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,7 +11,10 @@ import '../recipe.dart';
 class AddEditRecipeImages extends StatefulWidget {
   final Recipe recipeMetadata;
   final String tag;
-  const AddEditRecipeImages({Key? key, required this.recipeMetadata, required this.tag}) : super(key: key);
+  // TODO: Display old image, only push image if it's updated
+  final Uint8List? recipeImage;
+  const AddEditRecipeImages({Key? key, required this.recipeMetadata, required this.tag, this.recipeImage})
+      : super(key: key);
 
   @override
   State<AddEditRecipeImages> createState() => _AddEditRecipeImagesState();
@@ -25,6 +30,10 @@ class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
   @override
   void initState() {
     tag = widget.tag;
+    if (tag == "Edit") {
+      var im = Image.memory(widget.recipeImage!);
+      image = File(im.toString());
+    }
     entryData = widget.recipeMetadata;
     super.initState();
   }
@@ -58,9 +67,9 @@ class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
       child: Center(
           child: Column(children: [
         image != null
-            ? FittedBox(
+            ? SizedBox(
                 child: Image.file(image!),
-                fit: BoxFit.fill,
+                height: 400, // TODO: Adjust this image height value
               )
             : ElevatedButton(child: const Text('Choose from Gallery'), onPressed: () => pickImageGallery()),
         const SizedBox(height: 20),

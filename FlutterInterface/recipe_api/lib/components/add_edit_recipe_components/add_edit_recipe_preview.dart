@@ -66,11 +66,11 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
   Widget recipeMetaData() {
     return Column(
       children: [
-        FittedBox(
+        SizedBox(
           child: Image.file(
             File(entryData.images[0]),
           ),
-          fit: BoxFit.fill,
+          height: 400,
         ),
         ListTile(
             title: Text(
@@ -130,20 +130,21 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
           final String jsonData = await rootBundle.loadString('assets/api_url.json');
           final apiUrl = await json.decode(jsonData);
           if (tag == 'Add') {
+            // Create Recipe
             await http.post(Uri.parse('${apiUrl['url']}/recipes'),
                 headers: <String, String>{
                   'Content-Type': 'application/json; charset=UTF-8',
                 },
                 body: jsonEncode(httpBody));
-
-            uploadImage(apiUrl);
           } else {
+            // Update Recipe
             http.put(Uri.parse('${apiUrl['url']}/recipes'),
                 headers: <String, String>{
                   'Content-Type': 'application/json; charset=UTF-8',
                 },
                 body: jsonEncode(httpBody));
           }
+          uploadImage(apiUrl);
 
           Navigator.of(context).pop();
           Navigator.of(context).pop();
@@ -157,12 +158,15 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
   void uploadImage(apiUrl) async {
     final imageName = "${entryData.recipeName}_${entryData.author}.jpeg";
     var client = http.Client();
-    var request = http.Request('PUT',
-        Uri.parse('https://g9bijzgqga.execute-api.us-east-2.amazonaws.com/dev/mitchell-recipe-images/$imageName'));
+    var request = http.Request(
+        'PUT',
+        // TODO: Convert to URL variable
+        Uri.parse(
+            'https://0rbzt2fsha.execute-api.us-east-2.amazonaws.com/dev/images/mitchell-recipe-images/$imageName'));
     request.headers.addAll({'Content-Type': 'image/jpeg'});
     request.bodyBytes = await File(entryData.images[0]).readAsBytes();
     var streamedResponse = await client.send(request).then((res) {
-      print(res.statusCode);
+      print("image upload response: ${res.statusCode}");
     }).catchError((err) {
       print(err);
     });

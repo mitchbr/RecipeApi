@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -10,7 +12,8 @@ import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe
 
 class RecipeDetails extends StatefulWidget {
   final Recipe recipeEntry;
-  const RecipeDetails({Key? key, required this.recipeEntry}) : super(key: key);
+  final Uint8List image;
+  const RecipeDetails({Key? key, required this.recipeEntry, required this.image}) : super(key: key);
 
   @override
   _RecipeDetailsState createState() => _RecipeDetailsState();
@@ -21,12 +24,13 @@ class _RecipeDetailsState extends State<RecipeDetails> {
 
   late Recipe recipeEntry;
   late List<bool> checkedValues;
-  late File entryImage;
+  late Uint8List entryImage;
 
   @override
   void initState() {
     super.initState();
     recipeEntry = widget.recipeEntry;
+    entryImage = widget.image;
     checkedValues = List.filled(recipeEntry.ingredients.length, true, growable: false);
   }
 
@@ -49,7 +53,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
           builder: (context) => IconButton(
             icon: const Icon(Icons.delete_rounded),
             onPressed: () => showDialog<String>(
-                context: context, builder: (BuildContext context) => verifyDeleteRecipe(context, recipeEntry.recipeId)),
+                context: context, builder: (BuildContext context) => verifyDeleteRecipe(context, recipeEntry)),
           ),
         ),
       ]),
@@ -70,6 +74,10 @@ class _RecipeDetailsState extends State<RecipeDetails> {
             return recipeMetaData(recipeEntry);
           } else if (index == 0) {
             return Column(children: [
+              SizedBox(
+                child: Image.memory(entryImage),
+                height: 400,
+              ),
               const ListTile(
                   title: Text(
                 'Ingredients',
@@ -133,11 +141,14 @@ class _RecipeDetailsState extends State<RecipeDetails> {
    * 
    */
   void pushEditEntry(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddEditRecipeMetadata(recipeData: recipeEntry)))
+    Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AddEditRecipeMetadata(recipeData: recipeEntry, recipeImage: entryImage)))
         .then((data) => setState(() => {}));
   }
 
-  Widget verifyDeleteRecipe(BuildContext context, int id) {
+  Widget verifyDeleteRecipe(BuildContext context, Recipe recipeData) {
     return AlertDialog(
         title: const Text('Delete Recipe?'),
         content: const Text('This will permenently remove the recipe'),
@@ -149,22 +160,28 @@ class _RecipeDetailsState extends State<RecipeDetails> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              deleteRecipe(id);
+              deleteRecipe(recipeData);
             },
             child: const Text('Yes'),
           ),
         ]);
   }
 
-  void deleteRecipe(id) async {
+  void deleteRecipe(Recipe recipeData) async {
     // TODO: Verify response code
+    // Delete recipe data
     final String jsonData = await rootBundle.loadString('assets/api_url.json');
     final apiUrl = await json.decode(jsonData);
-    final http.Response response = await http.delete(Uri.parse('${apiUrl['url']}/recipes'),
+    await http.delete(Uri.parse('${apiUrl['url']}/recipes'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode({'recipeId': id}));
+        body: jsonEncode({'recipeId': recipeData.recipeId}));
+
+    // Delete recipe image
+    final imageName = "${recipeData.recipeName}_${recipeData.author}.jpeg";
+    var request = http.delete(Uri.parse(
+        'https://0rbzt2fsha.execute-api.us-east-2.amazonaws.com/dev/images/mitchell-recipe-images/$imageName'));
 
     setState(() {
       Navigator.of(context).pop();
