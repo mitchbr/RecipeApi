@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import '../recipe.dart';
@@ -6,7 +8,9 @@ import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe
 class AddEditRecipeIngredients extends StatefulWidget {
   final Recipe recipeMetadata;
   final String tag;
-  const AddEditRecipeIngredients({Key? key, required this.recipeMetadata, required this.tag}) : super(key: key);
+  final Uint8List? recipeImage;
+  const AddEditRecipeIngredients({Key? key, required this.recipeMetadata, required this.tag, required this.recipeImage})
+      : super(key: key);
 
   @override
   State<AddEditRecipeIngredients> createState() => _AddEditRecipeIngredientsState();
@@ -219,7 +223,12 @@ class _AddEditRecipeIngredientsState extends State<AddEditRecipeIngredients> {
 
   void pushAddEditRecipePreview(BuildContext context) {
     Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AddEditRecipePreview(recipeMetadata: entryData, tag: tag)))
-        .then((data) => setState(() => {}));
+        context,
+        MaterialPageRoute(
+            builder: (context) => AddEditRecipePreview(
+                  recipeMetadata: entryData,
+                  tag: tag,
+                  recipeImage: widget.recipeImage,
+                ))).then((data) => setState(() => {}));
   }
 }

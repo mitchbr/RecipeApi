@@ -11,7 +11,6 @@ import '../recipe.dart';
 class AddEditRecipeImages extends StatefulWidget {
   final Recipe recipeMetadata;
   final String tag;
-  // TODO: Display old image, only push image if it's updated
   final Uint8List? recipeImage;
   const AddEditRecipeImages({Key? key, required this.recipeMetadata, required this.tag, this.recipeImage})
       : super(key: key);
@@ -21,8 +20,10 @@ class AddEditRecipeImages extends StatefulWidget {
 }
 
 class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
-  File? image;
+  Image? image;
   late XFile imagePath;
+  late Uint8List recipeImage;
+  late Uint8List imageFile;
 
   late String tag;
   late Recipe entryData;
@@ -31,8 +32,7 @@ class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
   void initState() {
     tag = widget.tag;
     if (tag == "Edit") {
-      var im = Image.memory(widget.recipeImage!);
-      image = File(im.toString());
+      image = Image.memory(widget.recipeImage!);
     }
     entryData = widget.recipeMetadata;
     super.initState();
@@ -44,8 +44,8 @@ class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
 
       if (imagePath == null) return;
 
-      final imageFile = File(imagePath.path);
-      setState(() => image = imageFile);
+      imageFile = await File(imagePath.path).readAsBytes();
+      setState(() => image = Image.memory(imageFile));
     } on PlatformException {
       return;
     }
@@ -64,11 +64,11 @@ class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
   Widget formContent(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Center(
+      child: SingleChildScrollView(
           child: Column(children: [
         image != null
             ? SizedBox(
-                child: Image.file(image!),
+                child: image,
                 height: 400, // TODO: Adjust this image height value
               )
             : ElevatedButton(child: const Text('Choose from Gallery'), onPressed: () => pickImageGallery()),
@@ -100,12 +100,20 @@ class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
   }
 
   void addImageToRecipe() {
-    entryData.images.add(imagePath.path);
+    // entryData.images.add(imagePath.path);
+    if (tag == 'Edit') {
+      recipeImage = widget.recipeImage!;
+    } else {
+      recipeImage = imageFile;
+    }
   }
 
   void pushAddEditRecipePreview(BuildContext context) {
-    Navigator.push(context,
-            MaterialPageRoute(builder: (context) => AddEditRecipeIngredients(recipeMetadata: entryData, tag: tag)))
+    Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    AddEditRecipeIngredients(recipeMetadata: entryData, tag: tag, recipeImage: recipeImage)))
         .then((data) => setState(() => {}));
   }
 }

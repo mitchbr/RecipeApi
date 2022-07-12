@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -9,19 +11,23 @@ import '../recipe.dart';
 class AddEditRecipePreview extends StatefulWidget {
   final Recipe recipeMetadata;
   final String tag;
-  const AddEditRecipePreview({Key? key, required this.recipeMetadata, required this.tag}) : super(key: key);
+  final Uint8List? recipeImage;
+  const AddEditRecipePreview({Key? key, required this.recipeMetadata, required this.tag, required this.recipeImage})
+      : super(key: key);
 
   @override
   State<AddEditRecipePreview> createState() => _AddEditRecipePreviewState();
 }
 
 class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
+  Image? image;
   late String tag;
   late Recipe entryData;
 
   @override
   void initState() {
     tag = widget.tag;
+    image = Image.memory(widget.recipeImage!);
     entryData = widget.recipeMetadata;
     super.initState();
   }
@@ -67,9 +73,7 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
     return Column(
       children: [
         SizedBox(
-          child: Image.file(
-            File(entryData.images[0]),
-          ),
+          child: image,
           height: 400,
         ),
         ListTile(
@@ -164,7 +168,7 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
         Uri.parse(
             'https://0rbzt2fsha.execute-api.us-east-2.amazonaws.com/dev/images/mitchell-recipe-images/$imageName'));
     request.headers.addAll({'Content-Type': 'image/jpeg'});
-    request.bodyBytes = await File(entryData.images[0]).readAsBytes();
+    request.bodyBytes = widget.recipeImage!;
     var streamedResponse = await client.send(request).then((res) {
       print("image upload response: ${res.statusCode}");
     }).catchError((err) {

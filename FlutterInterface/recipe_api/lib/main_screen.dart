@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/recipes_feed.dart';
+import 'components/shared_feed/recipes_feed.dart';
 
 class Groceries extends StatefulWidget {
   const Groceries({Key? key}) : super(key: key);
