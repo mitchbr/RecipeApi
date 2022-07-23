@@ -7,8 +7,10 @@ from db_connect import db_connect
     Return all data for all recipes
 """
 def lambda_handler(event, context):
+    print("Get Recipes...")
     connection = db_connect()
     cursor = connection.cursor()
+    print("Connected to database")
 
     # Retrieve and organize the ingredients
     cursor.execute(f'SELECT * FROM recipes_db.ingredients')
@@ -25,10 +27,12 @@ def lambda_handler(event, context):
             ingredientsDict[row[4]].append({"ingredientName": row[1],
                                             "ingredientAmount": row[2],
                                             "ingredientUnit": row[3]})
+    print(f"ingredientsDict: {ingredientsDict}")
 
     # Get primary recipe data and organize it into a list
     cursor.execute('SELECT * FROM recipes_db.recipes')
     recipeSql = cursor.fetchall()
+    print(f"recipes: {recipeSql}")
 
     recipesList = []
     for row in recipeSql:
@@ -45,6 +49,7 @@ def lambda_handler(event, context):
                             "publishDate": row[4].strftime("%m-%d-%Y"),
                             "category": row[5],
                             "ingredients": ingredientsResponse})
+    print(f"recipesList: {recipesList}")    
 
     return {
         'statusCode': 200,

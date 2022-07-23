@@ -7,14 +7,18 @@ from db_connect import db_connect
     Add a new recipe
 """
 def lambda_handler(event, context):
+    print("Adding Recipe...")
     connection = db_connect()
     cursor = connection.cursor()
+    print("connected to database")
     newRecipe = event
+    print(f"event: {event}")
 
     # Check if any keys are missing
     req_keys = ["recipeName", "instructions", "author", "category", "ingredients"]
     for key in req_keys:
         if key not in newRecipe:
+            print(f"Fixing missing dict key: {key}")
             if key == "ingredients":
                 newRecipe[key] = []
             else:
@@ -29,6 +33,7 @@ def lambda_handler(event, context):
     )
     duplicate_check = cursor.fetchall()
     if duplicate_check:
+        print("ERROR: Author already has a recipe with this name")
         return {
             'statusCode': 409,
             'message': f'Recipe with name {newRecipe["recipeName"]} and author {newRecipe["author"]}, already exists in database'
@@ -40,6 +45,7 @@ def lambda_handler(event, context):
         f'VALUES ("{newRecipe["recipeName"]}", "{newRecipe["instructions"]}", "{newRecipe["author"]}", CURDATE(), "{newRecipe["category"]}");'
     )
     connection.commit()
+    print("Recipe data added successfully")
 
     # Post ingredient data next
     ingredients = newRecipe["ingredients"]
@@ -50,6 +56,7 @@ def lambda_handler(event, context):
             f'(SELECT recipeID FROM recipes_db.recipes WHERE recipeName = "{newRecipe["recipeName"]}" AND author = "{newRecipe["author"]}"));'
         )
         connection.commit()
+        print(f"Ingredient data added successfully: {ingredient['ingredientName']}")
 
     # GET the new data posted to the DB
     cursor.execute(
@@ -68,6 +75,7 @@ def lambda_handler(event, context):
                             "ingredientAmount": ingredient[2],
                             "ingredientUnit": ingredient[3]})
         
+    print(f"recipe added: {newRecipeDb}")
     return {
         'statusCode': 200,
         'message': 'Successfully added to database',

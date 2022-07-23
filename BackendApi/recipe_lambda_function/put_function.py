@@ -7,11 +7,15 @@ from db_connect import db_connect
     Update a recipe's data
 """
 def lambda_handler(event, context):
+    print("Update Recipe...")
     connection = db_connect()
     cursor = connection.cursor()
+    print("connected to database")
     recipe = event
+    print(f"event: {event}")
 
     if "recipeId" not in recipe:
+        print("Error: recipeId not in recipe")
         return {
         'statusCode': 400,
         'message': 'Please provide a recipeId'
@@ -20,6 +24,7 @@ def lambda_handler(event, context):
     # Check if any keys are missing
     req_keys = ["recipeName", "instructions", "author", "category"]
     for key in req_keys:
+        print(f"Fixing missing dict key: {key}")
         if key not in recipe:
             recipe[key] = ""
     
@@ -32,10 +37,12 @@ def lambda_handler(event, context):
         WHERE recipeID = {recipe["recipeId"]}'''
     )
     connection.commit()
+    print("Recipes table successfully updated")
 
     # Update ingredient data
     if "ingredients" in recipe:
         updateIngredients(connection, cursor, recipe)
+        print("ingredients updated")
         
     return {
         'statusCode': 200,
