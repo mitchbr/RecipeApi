@@ -1,6 +1,6 @@
 import json
 
-from recipe_lambda_function.lambda_function import db_connect
+from shared_resources import db_connect
 
 """
     POST endpoint
@@ -9,7 +9,7 @@ from recipe_lambda_function.lambda_function import db_connect
 def lambda_handler(event, context):
     connection = db_connect()
     cursor = connection.cursor()
-    newRecipe = json.loads(event["body"])
+    newRecipe = event
 
     # Check if any keys are missing
     req_keys = ["recipeName", "instructions", "author", "category", "ingredients", "images"]
