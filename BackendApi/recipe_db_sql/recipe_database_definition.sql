@@ -1,6 +1,5 @@
 -- Drop tables to reset schema
 DROP TABLE IF EXISTS recipes_db.ingredients;
-DROP TABLE IF EXISTS recipes_db.images;
 DROP TABLE IF EXISTS recipes_db.recipes;
 
 -- Create the recipes table
@@ -22,14 +21,5 @@ CREATE TABLE recipes_db.ingredients (
     unit varchar(255) NOT NULL,
     recipeID int NOT NULL,
     PRIMARY KEY (ingredientID),
-    FOREIGN KEY (recipeID) REFERENCES recipes_db.recipes (recipeID)
-);
-
--- Create images table -> recipeID ties to recipes table
-CREATE TABLE recipes_db.images (
-	imageID int AUTO_INCREMENT NOT NULL,
-    imageURL varchar(255) NOT NULL,
-    recipeID int NOT NULL,
-    PRIMARY KEY (imageID),
     FOREIGN KEY (recipeID) REFERENCES recipes_db.recipes (recipeID)
 );
