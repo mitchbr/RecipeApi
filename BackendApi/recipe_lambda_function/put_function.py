@@ -1,6 +1,6 @@
 import json
 
-from shared_resources import db_connect
+from db_connect import db_connect
 
 """
     PUT endpoint
@@ -36,10 +36,6 @@ def lambda_handler(event, context):
     # Update ingredient data
     if "ingredients" in recipe:
         updateIngredients(connection, cursor, recipe)
-
-    # Update image data
-    if "images" in recipe:
-        updateImages(connection, cursor, recipe)
         
     return {
         'statusCode': 200,
@@ -60,20 +56,5 @@ def updateIngredients(connection, cursor, recipe):
             f'INSERT INTO recipes_db.ingredients(ingredientName, amount, unit, recipeID)'
             f'VALUES ("{ingredient["ingredientName"]}", "{ingredient["ingredientAmount"]}", "{ingredient["ingredientUnit"]}",'
             f'(SELECT recipeID FROM recipes_db.recipes WHERE recipeName = "{recipe["recipeName"]}" AND author = "{recipe["author"]}"))'
-        )
-        connection.commit()
-
-def updateImages(connection, cursor, recipe):
-    # TODO: Make this happen without delete/post
-    cursor.execute(
-        f'DELETE FROM recipes_db.images WHERE recipeID = {recipe["recipeId"]}'
-    )
-    connection.commit()
-
-    images = recipe["images"]
-    for image in images:
-        cursor.execute(
-            f'INSERT INTO recipes_db.images(imageURL, recipeID)'
-            f'VALUES ("{image}", (SELECT recipeID FROM recipes_db.recipes WHERE recipeName = "{recipe["recipeName"]}" AND author = "{recipe["author"]}"))'
         )
         connection.commit()

@@ -1,6 +1,6 @@
 import json
 
-from shared_resources import db_connect
+from db_connect import db_connect
 
 """
     DELETE endpoint
@@ -34,12 +34,6 @@ def lambda_handler(event, context):
     # Delete ingredient data
     cursor.execute(
         f'DELETE FROM recipes_db.ingredients WHERE recipeID = {recipe["recipeId"]}'
-    )
-    connection.commit()
-
-    # Delete image data
-    cursor.execute(
-        f'DELETE FROM recipes_db.images WHERE recipeID = {recipe["recipeId"]}'
     )
     connection.commit()
 

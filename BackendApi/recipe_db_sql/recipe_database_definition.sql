@@ -10,6 +10,7 @@ CREATE TABLE recipes_db.recipes (
     author varchar(255) NOT NULL,
     publishDate DATE NOT NULL,
     category varchar(255) NOT NULL,
+    image varchar(255) NOT NULL,
     PRIMARY KEY (recipeID)
 );
     

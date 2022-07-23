@@ -1,6 +1,6 @@
 import json
 
-from shared_resources import db_connect
+from db_connect import db_connect
 
 """
     POST endpoint
@@ -12,10 +12,10 @@ def lambda_handler(event, context):
     newRecipe = event
 
     # Check if any keys are missing
-    req_keys = ["recipeName", "instructions", "author", "category", "ingredients", "images"]
+    req_keys = ["recipeName", "instructions", "author", "category", "ingredients"]
     for key in req_keys:
         if key not in newRecipe:
-            if key == "ingredients" or key == "images":
+            if key == "ingredients":
                 newRecipe[key] = []
             else:
                 newRecipe[key] = ""
@@ -50,15 +50,6 @@ def lambda_handler(event, context):
             f'(SELECT recipeID FROM recipes_db.recipes WHERE recipeName = "{newRecipe["recipeName"]}" AND author = "{newRecipe["author"]}"));'
         )
         connection.commit()
-    
-    # Post image data
-    images = newRecipe["images"]
-    for image in images:
-        cursor.execute(
-            f'INSERT INTO recipes_db.images(imageURL, recipeID)'
-            f'VALUES ("{image}", (SELECT recipeID FROM recipes_db.recipes WHERE recipeName = "{newRecipe["recipeName"]}" AND author = "{newRecipe["author"]}"));'
-        )
-        connection.commit()
 
     # GET the new data posted to the DB
     cursor.execute(
@@ -77,15 +68,6 @@ def lambda_handler(event, context):
                             "ingredientAmount": ingredient[2],
                             "ingredientUnit": ingredient[3]})
         
-    # Get image data
-    cursor.execute(
-        f'SELECT * FROM recipes_db.images WHERE recipeID = {newRecipeDb[0]};'
-    )
-    newRecipeImages = cursor.fetchall()
-    imageRes = []
-    for image in newRecipeImages:
-        imageRes.append(image[1])
-
     return {
         'statusCode': 200,
         'message': 'Successfully added to database',
@@ -95,6 +77,5 @@ def lambda_handler(event, context):
                             "author": newRecipeDb[3],
                             "publishDate": newRecipeDb[4].strftime("%m-%d-%Y"),
                             "category": newRecipeDb[5],
-                            "ingredients": ingredientRes,
-                            "images": imageRes})
+                            "ingredients": ingredientRes})
     }

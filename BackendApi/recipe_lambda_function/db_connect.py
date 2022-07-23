@@ -14,7 +14,6 @@ def db_connect():
         password = creds["pass"]
         dbName = creds["db_name"]
     else:
-        pass
         # Get secrets information
         secrets_client = boto3.client('secretsmanager')
         secret_arn = 'arn:aws:secretsmanager:us-east-2:369135786923:secret:RecipeDbAccess-qYKVSd'
