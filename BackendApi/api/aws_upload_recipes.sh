@@ -25,4 +25,4 @@ aws lambda update-function-code \
     --function-name recipes-delete \
     --zip-file fileb://zipped_functions/recipes-delete.zip
 
-echo "...Successfully Uploaded to AWS"
+echo "...Done"

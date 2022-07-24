@@ -44,7 +44,7 @@ class _AddEditRecipeImagesState extends State<AddEditRecipeImages> {
 
       if (imagePath == null) return;
 
-      imageFile = await File(imagePath.path).readAsBytes();
+      imageFile = await imagePath.readAsBytes();
       setState(() => image = Image.memory(imageFile));
     } on PlatformException {
       return;
