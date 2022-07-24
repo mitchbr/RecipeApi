@@ -1,0 +1,210 @@
+Uploading to AWS...
+Uploading GET Function
+updating: recipes_get.py (deflated 67%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/db_connect.py (deflated 56%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FLAG.py (deflated 31%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/COMMAND.py (deflated 57%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CLIENT.py (deflated 51%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/__init__.py (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ER.py (deflated 63%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CR.py (deflated 64%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/SERVER_STATUS.py (deflated 50%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FIELD_TYPE.py (deflated 45%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/protocol.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/cursors.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/connections.py (deflated 75%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/__init__.py (deflated 60%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/times.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/charset.py (deflated 82%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/converters.py (deflated 74%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/optionfile.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/err.py (deflated 62%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/_auth.py (deflated 68%)
+{
+    "FunctionName": "recipes-get",
+    "FunctionArn": "arn:aws:lambda:us-east-2:369135786923:function:recipes-get",
+    "Runtime": "python3.8",
+    "Role": "arn:aws:iam::369135786923:role/LambdaAccessSecrets",
+    "Handler": "get_function.lambda_handler",
+    "CodeSize": 46545,
+    "Description": "",
+    "Timeout": 3,
+    "MemorySize": 128,
+    "LastModified": "2022-07-24T01:46:41.000+0000",
+    "CodeSha256": "bvPUiaBvyjzogxX2XQF0pfno0opoo5qc7qlkTc/mgFE=",
+    "Version": "$LATEST",
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "RevisionId": "c0d89e09-c5db-4c5f-82c5-75de094c6af6",
+    "State": "Active",
+    "LastUpdateStatus": "InProgress",
+    "LastUpdateStatusReason": "The function is being created.",
+    "LastUpdateStatusReasonCode": "Creating",
+    "PackageType": "Zip",
+    "Architectures": [
+        "x86_64"
+    ],
+    "EphemeralStorage": {
+        "Size": 512
+    }
+}
+Uploading POST Function
+updating: recipes_post.py (deflated 70%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/db_connect.py (deflated 56%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FLAG.py (deflated 31%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/COMMAND.py (deflated 57%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CLIENT.py (deflated 51%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/__init__.py (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ER.py (deflated 63%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CR.py (deflated 64%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/SERVER_STATUS.py (deflated 50%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FIELD_TYPE.py (deflated 45%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/protocol.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/cursors.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/connections.py (deflated 75%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/__init__.py (deflated 60%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/times.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/charset.py (deflated 82%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/converters.py (deflated 74%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/optionfile.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/err.py (deflated 62%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/_auth.py (deflated 68%)
+{
+    "FunctionName": "recipes-post",
+    "FunctionArn": "arn:aws:lambda:us-east-2:369135786923:function:recipes-post",
+    "Runtime": "python3.8",
+    "Role": "arn:aws:iam::369135786923:role/LambdaAccessSecrets",
+    "Handler": "post_function.lambda_handler",
+    "CodeSize": 88490,
+    "Description": "",
+    "Timeout": 3,
+    "MemorySize": 128,
+    "LastModified": "2022-07-24T01:46:43.000+0000",
+    "CodeSha256": "PxNoaEAU9HcwUs2VhqMHpyAPIQDxBpt5KhMPIlGOVF8=",
+    "Version": "$LATEST",
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "RevisionId": "f4352793-7fbd-48e1-a03f-65a6ce70799f",
+    "State": "Active",
+    "LastUpdateStatus": "InProgress",
+    "LastUpdateStatusReason": "The function is being created.",
+    "LastUpdateStatusReasonCode": "Creating",
+    "PackageType": "Zip",
+    "Architectures": [
+        "x86_64"
+    ],
+    "EphemeralStorage": {
+        "Size": 512
+    }
+}
+Uploading PUT Function
+updating: recipes_put.py (deflated 65%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/db_connect.py (deflated 56%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FLAG.py (deflated 31%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/COMMAND.py (deflated 57%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CLIENT.py (deflated 51%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/__init__.py (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ER.py (deflated 63%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CR.py (deflated 64%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/SERVER_STATUS.py (deflated 50%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FIELD_TYPE.py (deflated 45%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/protocol.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/cursors.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/connections.py (deflated 75%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/__init__.py (deflated 60%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/times.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/charset.py (deflated 82%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/converters.py (deflated 74%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/optionfile.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/err.py (deflated 62%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/_auth.py (deflated 68%)
+{
+    "FunctionName": "recipes-put",
+    "FunctionArn": "arn:aws:lambda:us-east-2:369135786923:function:recipes-put",
+    "Runtime": "python3.8",
+    "Role": "arn:aws:iam::369135786923:role/LambdaAccessSecrets",
+    "Handler": "put_function.lambda_handler",
+    "CodeSize": 88210,
+    "Description": "",
+    "Timeout": 3,
+    "MemorySize": 128,
+    "LastModified": "2022-07-24T01:46:44.000+0000",
+    "CodeSha256": "LsptEDpvBqOCTMwKDtB2dGPTQZI21RlwQWZSA7U9mTk=",
+    "Version": "$LATEST",
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "RevisionId": "91aa5612-600e-41b7-91f6-2be2dd640c9c",
+    "State": "Active",
+    "LastUpdateStatus": "InProgress",
+    "LastUpdateStatusReason": "The function is being created.",
+    "LastUpdateStatusReasonCode": "Creating",
+    "PackageType": "Zip",
+    "Architectures": [
+        "x86_64"
+    ],
+    "EphemeralStorage": {
+        "Size": 512
+    }
+}
+Uploading DELETE Function
+updating: recipes_delete.py (deflated 66%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/db_connect.py (deflated 56%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FLAG.py (deflated 31%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/COMMAND.py (deflated 57%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CLIENT.py (deflated 51%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/__init__.py (stored 0%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/ER.py (deflated 63%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/CR.py (deflated 64%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/SERVER_STATUS.py (deflated 50%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/constants/FIELD_TYPE.py (deflated 45%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/protocol.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/cursors.py (deflated 72%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/connections.py (deflated 75%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/__init__.py (deflated 60%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/times.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/charset.py (deflated 82%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/converters.py (deflated 74%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/optionfile.py (deflated 58%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/err.py (deflated 62%)
+updating: Users/mitchellbrown/Documents/ghRepos/RecipeApi/BackendApi/recipe_lambda_function/recipes_lambdas/../database/pymysql/_auth.py (deflated 68%)
+{
+    "FunctionName": "recipes-delete",
+    "FunctionArn": "arn:aws:lambda:us-east-2:369135786923:function:recipes-delete",
+    "Runtime": "python3.8",
+    "Role": "arn:aws:iam::369135786923:role/LambdaAccessSecrets",
+    "Handler": "delete_function.lambda_handler",
+    "CodeSize": 88026,
+    "Description": "",
+    "Timeout": 3,
+    "MemorySize": 128,
+    "LastModified": "2022-07-24T01:46:46.000+0000",
+    "CodeSha256": "YPJM/I7Y7Y/WeHElqSg/Q9O3jQdpB04SY/mCLCqEBxU=",
+    "Version": "$LATEST",
+    "TracingConfig": {
+        "Mode": "PassThrough"
+    },
+    "RevisionId": "833d9947-47d6-428b-8cdf-de8b324b6fd3",
+    "State": "Active",
+    "LastUpdateStatus": "InProgress",
+    "LastUpdateStatusReason": "The function is being created.",
+    "LastUpdateStatusReasonCode": "Creating",
+    "PackageType": "Zip",
+    "Architectures": [
+        "x86_64"
+    ],
+    "EphemeralStorage": {
+        "Size": 512
+    }
+}
+...Successfully Uploaded to AWS

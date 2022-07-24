@@ -2,10 +2,10 @@ from turtle import position
 import unittest
 import json
 
-from get_function import lambda_handler as get_lambda
-from post_function import lambda_handler as post_lambda
-from put_function import lambda_handler as put_lambda
-from delete_function import lambda_handler as delete_lambda
+from recipes_get import lambda_handler as get_lambda
+from recipes_post import lambda_handler as post_lambda
+from recipes_put import lambda_handler as put_lambda
+from recipes_delete import lambda_handler as delete_lambda
 
 
 class TestLambdaMethods(unittest.TestCase):

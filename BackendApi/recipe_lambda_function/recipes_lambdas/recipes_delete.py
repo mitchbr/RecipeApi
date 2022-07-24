@@ -1,6 +1,6 @@
 import json
 
-from db_connect import db_connect
+from database.db_connect import db_connect
 
 """
     DELETE endpoint
