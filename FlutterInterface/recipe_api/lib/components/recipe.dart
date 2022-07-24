@@ -8,7 +8,6 @@ class Recipe {
   late DateTime publishDate;
   late String category;
   late List ingredients;
-  late List images;
 
   Recipe({
     required this.recipeId,
@@ -18,7 +17,6 @@ class Recipe {
     required this.publishDate,
     required this.category,
     required this.ingredients,
-    required this.images,
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
@@ -30,8 +28,7 @@ class Recipe {
         author: json["author"],
         publishDate: dateFormat.parse(json["publishDate"]),
         category: json["category"],
-        ingredients: json["ingredients"],
-        images: []); //TODO: Implement Images
+        ingredients: []);
   }
 
   Map<String, dynamic> toJson() {
@@ -44,7 +41,6 @@ class Recipe {
     data["publishDate"] = dateFormat.format(publishDate);
     data["category"] = category;
     data["ingredients"] = ingredients;
-    data["images"] = ['FAKE URL']; //TODO: Implement Images
     return data;
   }
 }

@@ -49,7 +49,6 @@ class _RecipesViewState extends State<RecipesView> {
       final entriesList = entriesJson.map((recipe) => Recipe.fromJson(recipe)).toList();
       for (var i = 0; i < entriesList.length; i++) {
         images.add(await fetchRecipeImage(entriesList[i]));
-        print(images.length);
       }
 
       setState(() {

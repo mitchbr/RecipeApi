@@ -36,7 +36,7 @@ def lambda_handler(event, context):
     ingredientsSql = cursor.fetchall()
     print(f"sql response: {ingredientsSql}")
     if not ingredientsSql:
-        print("No content to show")
+        print("recipeId does not exist")
         return {
             'statusCode': 204
         }

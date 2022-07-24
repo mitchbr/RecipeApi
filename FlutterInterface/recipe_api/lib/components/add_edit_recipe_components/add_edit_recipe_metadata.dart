@@ -46,7 +46,6 @@ class _AddEditRecipeMetadataState extends State<AddEditRecipeMetadata> {
         publishDate: DateTime.now(),
         category: '',
         ingredients: [],
-        images: [],
       );
       loadFromJson("");
     }

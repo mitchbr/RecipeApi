@@ -30,8 +30,26 @@ class _RecipeDetailsState extends State<RecipeDetails> {
   void initState() {
     super.initState();
     recipeEntry = widget.recipeEntry;
+    recipeEntry.ingredients = []; // TODO: Remove this after testing
+    fetchIngredients(recipeEntry.recipeId);
     entryImage = widget.image;
-    checkedValues = List.filled(recipeEntry.ingredients.length, true, growable: false);
+  }
+
+  Future<void> fetchIngredients(recipeId) async {
+    final String jsonData = await rootBundle.loadString('assets/api_url.json');
+    final apiUrl = await json.decode(jsonData);
+    final res = await http.get(
+      Uri.parse('${apiUrl['url']}/ingredients/$recipeId'),
+    );
+
+    if (res.statusCode == 200) {
+      setState(() {
+        recipeEntry.ingredients = jsonDecode(res.body)["ingredients"];
+        checkedValues = List.filled(recipeEntry.ingredients.length, true, growable: false);
+      });
+    } else {
+      throw Exception('Failed to load recipes');
+    }
   }
 
   /*
