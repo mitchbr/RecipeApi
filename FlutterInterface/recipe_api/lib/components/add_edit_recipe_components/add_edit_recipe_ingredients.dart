@@ -174,6 +174,7 @@ class _AddEditRecipeIngredientsState extends State<AddEditRecipeIngredients> {
 
         setState(() {
           entryData.ingredients.add(currentIngredient);
+          currentIngredient = {};
           _nameController.clear();
           _amountController.clear();
           _unitController.clear();
