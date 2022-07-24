@@ -1,7 +1,7 @@
 import os
 import json
 import boto3
-import pymysql
+import database.pymysql as pymysql
 
 def db_connect():
     if os.path.exists("creds.json"):
