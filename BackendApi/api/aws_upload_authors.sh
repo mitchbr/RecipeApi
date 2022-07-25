@@ -8,4 +8,10 @@ aws lambda update-function-code \
     --function-name author-get \
     --zip-file fileb://zipped_functions/author-get.zip
 
+echo "Uploading POST Function"
+zip -r zipped_functions/author-post.zip authors_lambdas/author_post.py database
+aws lambda update-function-code \
+    --function-name author-post \
+    --zip-file fileb://zipped_functions/author-post.zip
+
 echo "...Done"
