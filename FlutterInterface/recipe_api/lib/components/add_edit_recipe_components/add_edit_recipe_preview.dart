@@ -150,11 +150,7 @@ class _AddEditRecipePreviewState extends State<AddEditRecipePreview> {
           }
           uploadImage(apiUrl);
 
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-          // TODO: Navigate back to recipe, stop popping 4 times
+          Navigator.of(context).popUntil((route) => route.isFirst);
         },
         child: const Text('Publish'));
   }

@@ -114,6 +114,6 @@ class _RecipesViewState extends State<RecipesView> {
    */
   void pushNewEntry(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const AddEditRecipeMetadata()))
-        .then((data) => setState(() => {}));
+        .then((data) => setState(() => {fetchRecipes()}));
   }
 }
