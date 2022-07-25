@@ -14,4 +14,10 @@ aws lambda update-function-code \
     --function-name author-post \
     --zip-file fileb://zipped_functions/author-post.zip
 
+echo "Uploading DELETE Function"
+zip -r zipped_functions/author-delete.zip authors_lambdas/author_delete.py database
+aws lambda update-function-code \
+    --function-name author-delete \
+    --zip-file fileb://zipped_functions/author-delete.zip
+
 echo "...Done"

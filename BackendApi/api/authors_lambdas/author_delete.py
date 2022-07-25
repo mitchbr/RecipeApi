@@ -5,7 +5,7 @@ import json
 
 """
     GET endpoint
-    Return all data for an author by username
+    Return all data for an author by ID
 """
 def lambda_handler(event, context):
     print(f"event: {event}")
@@ -20,20 +20,18 @@ def lambda_handler(event, context):
     dynamodb = boto3.client('dynamodb', region_name='us-east-2')
     print(f"Connected to dynamoDB: {dynamodb}")
 
-    res = dynamodb.get_item(TableName='recipe_authors', Key={'username': {"S": username}})
-    print(f"dynamodb res: {res}")
-    if res["ResponseMetadata"]["HTTPStatusCode"] != 200 or 'Item' not in res:
+    res = dynamodb.delete_item(TableName='recipe_authors', Key={'username': {"S": username}})
+    print(f"dynamo response: {res}")
+
+    if res["ResponseMetadata"]["HTTPStatusCode"] != 200:
         return {
             'statusCode': 400,
-            'body': json.dumps("DynamoDB Could not find username")
+            'body': json.dumps("DynamoDB Could not remove item")
         }
 
-    user = {}
-    for key in res['Item']:
-        user[key] = td.deserialize(res['Item'][key])
-    print(f"user: {user}")
-    
     return {
         'statusCode': 200,
-        'body': json.dumps(user)
+        'body': json.dumps({
+            'message': f"Successfully removed {username}"
+        })
     }

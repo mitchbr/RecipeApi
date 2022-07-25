@@ -4,8 +4,8 @@ td = TypeDeserializer()
 import json
 
 """
-    GET endpoint
-    Return all data for an author by ID
+    POST endpoint
+    Add a new author
 """
 def lambda_handler(event, context):
     print(f"event: {event}")
