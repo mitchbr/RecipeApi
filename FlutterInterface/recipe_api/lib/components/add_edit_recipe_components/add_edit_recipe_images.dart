@@ -3,10 +3,9 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 import 'add_edit_recipe_ingredients.dart';
-import '../recipe.dart';
+import '../../types/recipe.dart';
 
 class AddEditRecipeImages extends StatefulWidget {
   final Recipe recipeMetadata;

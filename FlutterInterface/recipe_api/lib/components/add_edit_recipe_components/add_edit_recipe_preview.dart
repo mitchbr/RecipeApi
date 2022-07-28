@@ -3,10 +3,9 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'dart:io';
 import 'package:flutter/services.dart';
 
-import '../recipe.dart';
+import '../../types/recipe.dart';
 
 class AddEditRecipePreview extends StatefulWidget {
   final Recipe recipeMetadata;

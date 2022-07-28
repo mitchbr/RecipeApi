@@ -5,9 +5,8 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
-import 'dart:io';
 
-import 'recipe.dart';
+import '../../types/recipe.dart';
 import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe_metadata.dart';
 
 class RecipeDetails extends StatefulWidget {

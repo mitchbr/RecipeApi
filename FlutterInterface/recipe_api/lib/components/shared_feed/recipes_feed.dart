@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-import '../recipe.dart';
+import '../../types/recipe.dart';
 import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe_metadata.dart';
 import 'feed_tile.dart';
 
@@ -103,6 +103,7 @@ class _RecipesViewState extends State<RecipesView> {
           return FeedTile(
             recipeEntry: recipeEntries[index],
             image: images[index],
+            fetchRecipes: fetchRecipes(),
           );
         });
   }

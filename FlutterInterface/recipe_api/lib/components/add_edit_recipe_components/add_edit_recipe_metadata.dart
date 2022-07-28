@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-import '../recipe.dart';
+import '../../types/recipe.dart';
 import 'add_edit_recipe_images.dart';
 
 class AddEditRecipeMetadata extends StatefulWidget {
