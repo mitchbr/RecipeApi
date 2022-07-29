@@ -12,8 +12,14 @@ def lambda_handler(event, context):
     cursor = connection.cursor()
     print("Connected to database")
 
+    offset = 0 # TODO: take as input
+
     # Get primary recipe data and organize it into a list
-    cursor.execute('SELECT * FROM recipes_db.recipes')
+    cursor.execute(
+        f'''SELECT * FROM recipes_db.recipes
+        ORDER BY recipeId DESC
+        LIMIT 10 OFFSET {offset};
+        ''')
     recipeSql = cursor.fetchall()
     print(f"recipes: {recipeSql}")
 
