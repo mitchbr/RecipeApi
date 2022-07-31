@@ -14,7 +14,7 @@ def lambda_handler(event, context):
     print("Connected to database")
 
     offset = 0
-    if (event['queryStringParameters']['offset']):
+    if event['queryStringParameters'] is not None and 'offset' in event['queryStringParameters']:
         offset = int(event['queryStringParameters']['offset'])
 
     print(f"offset: {offset}")
@@ -42,5 +42,11 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Headers':'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+            'Access-Control-Allow-Credentials' : 'true',
+            'Content-Type': 'application/json'
+        },
         'body': json.dumps({"recipes": recipesList})
     }
