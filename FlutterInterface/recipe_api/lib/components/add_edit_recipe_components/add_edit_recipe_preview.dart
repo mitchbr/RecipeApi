@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
-import '../../types/recipe.dart';
+import '../../libraries/recipe.dart';
 
 class AddEditRecipePreview extends StatefulWidget {
   final Recipe recipeMetadata;

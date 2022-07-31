@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
-import '../../types/recipe.dart';
+import '../../libraries/recipe.dart';
 import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe_metadata.dart';
 import 'feed_tile.dart';
 

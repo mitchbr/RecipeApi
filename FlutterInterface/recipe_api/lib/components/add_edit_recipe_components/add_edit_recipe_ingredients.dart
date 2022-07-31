@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import '../../types/recipe.dart';
+import '../../libraries/recipe.dart';
 import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe_preview.dart';
 
 class AddEditRecipeIngredients extends StatefulWidget {

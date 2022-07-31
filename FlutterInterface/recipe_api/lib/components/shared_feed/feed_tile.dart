@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import '../../types/recipe.dart';
+import '../../libraries/recipe.dart';
 import '../details_page/recipe_details.dart';
 
 class FeedTile extends StatefulWidget {

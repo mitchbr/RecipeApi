@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
-import '../../types/recipe.dart';
+import '../../libraries/recipe.dart';
 import 'package:recipe_api/components/add_edit_recipe_components/add_edit_recipe_metadata.dart';
 
 class RecipeDetails extends StatefulWidget {
@@ -186,7 +186,6 @@ class _RecipeDetailsState extends State<RecipeDetails> {
 
   void deleteRecipe(Recipe recipeData) async {
     // TODO: Verify response code
-    // Delete recipe data
     final String jsonData = await rootBundle.loadString('assets/api_url.json');
     final apiUrl = await json.decode(jsonData);
     await http.delete(Uri.parse('${apiUrl['url']}/recipes'),
