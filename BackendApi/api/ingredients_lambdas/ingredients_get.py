@@ -38,7 +38,13 @@ def lambda_handler(event, context):
     if not ingredientsSql:
         print("recipeId does not exist")
         return {
-            'statusCode': 204
+            'statusCode': 204,
+            'headers': {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Headers':'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Credentials' : 'true',
+                'Content-Type': 'application/json'
+            },
         }
     
     ingredientsList = []
@@ -53,6 +59,12 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Headers':'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+            'Access-Control-Allow-Credentials' : 'true',
+            'Content-Type': 'application/json'
+        },
         'body': json.dumps({
             'ingredients': ingredientsList
         })
