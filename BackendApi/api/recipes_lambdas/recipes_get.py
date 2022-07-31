@@ -8,11 +8,16 @@ from database.db_connect import db_connect
 """
 def lambda_handler(event, context):
     print("Get Recipes...")
+    print(f"event: {event}")
     connection = db_connect()
     cursor = connection.cursor()
     print("Connected to database")
 
-    offset = 0 # TODO: take as input
+    offset = 0
+    if (event['queryStringParameters']['offset']):
+        offset = int(event['queryStringParameters']['offset'])
+
+    print(f"offset: {offset}")
 
     # Get primary recipe data and organize it into a list
     cursor.execute(
