@@ -44,7 +44,7 @@ class _RecipesViewState extends State<RecipesView> {
     );
 
     if (res.statusCode == 200) {
-      final entriesJson = jsonDecode(jsonDecode(res.body)["body"])["recipes"];
+      final entriesJson = jsonDecode(res.body)["recipes"];
       final entriesList = entriesJson.map((recipe) => Recipe.fromJson(recipe)).toList();
       for (var i = 0; i < entriesList.length; i++) {
         images.add(await fetchRecipeImage(entriesList[i]));

@@ -46,7 +46,7 @@ class _RecipeDetailsState extends State<RecipeDetails> {
         recipeEntry.ingredients = jsonDecode(res.body)["ingredients"];
         checkedValues = List.filled(recipeEntry.ingredients.length, true, growable: false);
       });
-    } else {
+    } else if (res.statusCode != 204) {
       throw Exception('Failed to load recipes');
     }
   }
