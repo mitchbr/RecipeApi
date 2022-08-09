@@ -21,9 +21,9 @@ def lambda_handler(event, context):
     dynamodb = boto3.client("dynamodb", region_name="us-east-2")
     print(f"Connected to dynamoDB: {dynamodb}")
 
-    check_res = dynamodb.get_item(TableName="recipe_authors", Key={"username": {"S": event["username"]}})
-    print(f"dynamodb.get_item: {check_res}")
-    if "Item" not in check_res:
+    check_user = dynamodb.get_item(TableName="recipe_authors", Key={"username": {"S": event["username"]}})
+    print(f"dynamodb.get_item: {check_user}")
+    if "Item" not in check_user:
         return {
             "statusCode": 400,
             "body": json.dumps({
@@ -31,9 +31,9 @@ def lambda_handler(event, context):
             })
         }
 
-    check_res = dynamodb.get_item(TableName="recipe_authors", Key={"username": {"S": event["update"]}})
-    print(f"dynamodb.get_item: {check_res}")
-    if "Item" not in check_res:
+    check_update = dynamodb.get_item(TableName="recipe_authors", Key={"username": {"S": event["update"]}})
+    print(f"dynamodb.get_item: {check_update}")
+    if "Item" not in check_update:
         return {
             "statusCode": 400,
             "body": json.dumps({
@@ -41,7 +41,10 @@ def lambda_handler(event, context):
             })
         }    
 
-    following = td.deserialize(check_res["Item"]["following"])
+    if ("following" in check_update["Item"]):
+        following = td.deserialize(check_update["Item"]["following"])
+    else:
+        following = []
     print(f"following: {following}")
 
     if event["type"] == "follow" and event["update"] not in following:
